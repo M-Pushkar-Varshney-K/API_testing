@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Shortener</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+  <h1>Welcome to the Spring Boot Application</h1>
+  <p>This is a simple HTML page served by Spring Boot.</p>
+  <p>Current time: <span id="current-time"></span></p>
+
+  <script>
+    // Fetch the current time from the server
+    fetch('/api/time')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('current-time').textContent = data.time;
+      })
+      .catch(error => console.error('Error fetching time:', error));
+  </script>
+</body>
+</html>

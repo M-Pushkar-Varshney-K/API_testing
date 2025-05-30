@@ -1,0 +1,23 @@
+<div class="wrapper">
+  <div class="input-box">
+    <input
+      type="url"
+      placeholder="Enter URL here…"
+      [(ngModel)]="longUrl"
+      (keyup.enter)="shortUrlFun()"
+    />
+    <button (click)="shortUrlFun()">
+      <span class="material-icons">send</span>
+    </button>
+  </div>
+
+  <div class="output">
+    <h3>Your Short URL:</h3>
+    <div class="shorted-url">
+      <p class="short-url">{{ shortUrl }}</p>
+      <button (click)="copyToClipboard()">
+        <span class="material-icons">content_copy</span>
+      </button>
+    </div>
+  </div>
+</div>

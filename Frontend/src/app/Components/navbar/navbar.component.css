@@ -1,0 +1,65 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background: #ffffffcc;  /* slightly translucent white */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Logo */
+.logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.logo h2 {
+  font-size: 24px;
+  color: #f4b01d;
+  margin-right: 4px;
+}
+.logo span {
+  font-size: 24px;
+  color: #f4b01d;
+}
+.logo h3 {
+  font-size: 20px;
+  color: #333;
+  margin-left: 4px;
+}
+
+/* Links */
+.nav-links ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+.nav-links a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #555;
+  padding-bottom: 4px;
+  transition: color .2s, border-bottom .2s;
+}
+.nav-links a.active {
+  color: #f4b01d;
+  border-bottom: 2px solid #f4b01d;
+}
+
+/* Login button */
+.login-btn button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.login-btn .material-icons {
+  margin-right: 4px;
+  color: #f4b01d;
+}

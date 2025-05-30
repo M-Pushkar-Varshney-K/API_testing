@@ -1,0 +1,28 @@
+<nav class="navbar">
+  <!-- LOGO -->
+  <div class="logo">
+    <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <h2>URL</h2><span>_</span>
+      <h3>Shortner</h3>
+    </a>
+  </div>
+
+  <!-- ROUTE LINKS -->
+  <div class="nav-links">
+    <ul>
+      <li><a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+      <li><a routerLink="/access" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Accessed</a>
+      </li>
+      <li><a routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">About</a></li>
+    </ul>
+  </div>
+
+  <!-- LOGIN BUTTON -->
+  <div (click)="logg()" class="login-btn">
+    <button *ngIf="logged; else out"><span class="material-icons">login</span> Login</button>
+
+    <ng-template #out>
+      <button><span class="material-icons">logout</span> Logout</button>
+    </ng-template>
+  </div>
+</nav>

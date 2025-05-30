@@ -1,0 +1,35 @@
+/* 1. Reset & box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2. Make the app root fill the viewport as a column */
+html, body {
+  height: 100%;
+}
+app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* 3. Navbar / Footer take only the space they need */
+navbar, footer {
+  flex: 0 0 auto;
+}
+
+/* 4. Main will grow to fill remaining space */
+main {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0e5cf; /* very light warm tone behind wrapper */
+  padding: 16px;
+  overflow: auto;
+}
