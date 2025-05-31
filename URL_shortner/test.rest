@@ -1,0 +1,36 @@
+##server testing ##
+GET http://localhost:8080/healthCheck
+
+
+### adding user in database ###
+
+POST http://localhost:8080/api/register
+Content-Type: application/json
+
+{
+  "name": "test User",
+  "email": "testuser@gmail.com",
+  "password": "test"
+}
+### updating user in database ###
+
+PUT http://localhost:8080/api/683b322c38f5d845de45b422
+Content-Type: application/json
+
+{
+  "name": "User",
+  "email": "updateuser1@gmail.com",
+  "password": "test3"
+}
+
+### all user in database ###
+
+GET http://localhost:8080/api/users
+
+### user in database by id ###
+
+GET http://localhost:8080/api/683b318e38f5d845de45b41f
+
+### delete user in database by id ###
+
+DELETE  http://localhost:8080/api/683b318e38f5d845de45b41f
