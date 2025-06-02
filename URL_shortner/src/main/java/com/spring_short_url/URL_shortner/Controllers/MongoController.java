@@ -24,12 +24,26 @@ public class MongoController {
 	@Autowired
 	private userService userService;
 
-	@GetMapping("/")
-	public String Home() {
-		return "index";
+	@CrossOrigin(origins = "http://localhost:4200")
+	@GetMapping("/{id}")
+	public ResponseEntity<?> home(@PathVariable("id") String hexCode) {
+		try {
+			String originalLongUrl = mongoService.getFullUrl(hexCode);
+			if (originalLongUrl == null || originalLongUrl.isEmpty()) {
+				return ResponseEntity.notFound().build();
+			}
+			HttpHeaders headers = new HttpHeaders();
+			headers.setLocation(URI.create(originalLongUrl));
+			return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.build();
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.build();
+		}
 	}
 
-	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/urls/{id}")
 	public ResponseEntity<?> getAllUrlsOfUserEntity(@PathVariable ObjectId id) {
 		try {
