@@ -26,7 +26,7 @@ public class MongoController {
 
 	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/{id}")
-	public ResponseEntity<Void> home(@PathVariable("id") String hexCode) {
+	public ResponseEntity<?> home(@PathVariable("id") String hexCode) {
 		try {
 			String originalLongUrl = mongoService.getFullUrl(hexCode);
 			if (originalLongUrl == null || originalLongUrl.isEmpty()) {
