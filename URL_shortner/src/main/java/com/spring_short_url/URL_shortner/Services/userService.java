@@ -27,6 +27,21 @@ public class userService {
         usersInterface.save(user);
     }
 
+    public Optional<Users> createUserEntry(Users user) {
+        if (user.getName() == null || user.getName().isEmpty()) {
+            throw new IllegalArgumentException("Username cannot be null or empty");
+        } else if (user.getPassword() == null || user.getPassword().isEmpty()) {
+            throw new IllegalArgumentException("Password cannot be null or empty");
+        } else if (user.getEmail() == null || user.getEmail().isEmpty()) {
+            throw new IllegalArgumentException("Email cannot be null or empty");
+        } else if (!usersInterface.findByEmail(user.getEmail()).isEmpty()) {
+            throw new IllegalArgumentException("User with the given email already exists");
+        } else {
+            saveUserEntry(user);
+            return Optional.of(user);
+        }
+    }
+
     public Optional<List<Users>> getAllUserEntries() {
         List<Users> userEntries = usersInterface.findAll();
         if (userEntries.isEmpty()) {
@@ -77,18 +92,22 @@ public class userService {
         throw new IllegalArgumentException("User with the given ID does not exist");
     }
 
-    // public String getUserIdByEmailAndPassword(Users user) {
-    //     if (user.getEmail() == null || user.getEmail().isEmpty()) {
-    //         throw new IllegalArgumentException("Email cannot be null or empty");
-    //     }
-    //     if (user.getPassword() == null || user.getPassword().isEmpty()) {
-    //         throw new IllegalArgumentException("Password cannot be null or empty");
-    //     }
-    //     Optional<Users> existingUser = usersInterface.findByEmailAndPassword(user.getEmail(), user.getPassword());
-    //     if (existingUser.isPresent()) {
-    //         return existingUser.get().getId().toHexString();
-    //     } else {
-    //         throw new IllegalArgumentException("User with the given email and password does not exist");
-    //     }
-    // }
+    public Optional<Users> getUserByEmailAndPassword(Users user) {
+        if (user.getEmail() == null || user.getEmail().isEmpty()) {
+            throw new IllegalArgumentException("Email cannot be null or empty");
+        }
+        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+            throw new IllegalArgumentException("Password cannot be null or empty");
+        }
+        Optional<Users> existingUser = usersInterface.findByEmail(user.getEmail());
+        if (existingUser.isPresent()) {
+            if (existingUser.get().getPassword().equals(user.getPassword())) {
+                return existingUser;
+            } else {
+                throw new IllegalArgumentException("Incorrect password for the given email");
+            }
+        } else {
+            throw new IllegalArgumentException("User with the given email and password does not exist");
+        }
+    }
 }
