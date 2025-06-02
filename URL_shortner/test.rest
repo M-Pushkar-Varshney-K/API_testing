@@ -1,0 +1,74 @@
+##server testing ##
+GET http://localhost:8080/health
+
+### adding user in database ###
+
+POST http://localhost:8080/api/register
+Content-Type: application/json
+
+{
+  "name": "test User",
+  "email": "testuser@gmail.com",
+  "password": "test"
+}
+
+### updating user in database ###
+PUT http://localhost:8080/api/683c83723bfc2c074c2ec2c8
+Content-Type: application/json
+
+{
+  "name": "User",
+  "email": "updateuser1@gmail.com",
+  "password": "test3"
+}
+
+### login user in database ###
+GET  http://localhost:8080/api/login
+Content-Type: application/json
+
+{
+  "email": "updateuser1@gmail.com",
+  "password": "test3"
+}
+
+### all user in database ###
+GET http://localhost:8080/api/users
+
+### user in database by id ###
+GET http://localhost:8080/api/683c83723bfc2c074c2ec2c8
+
+### delete user in database by id ###
+DELETE  http://localhost:8080/api/683c83723bfc2c074c2ec2c8
+
+### urls of particular user ###
+GET http://localhost:8080/urls/683c83723bfc2c074c2ec2c8
+
+### add url in particular user ###
+POST http://localhost:8080/683c83723bfc2c074c2ec2c8/short_it
+Content-Type: application/json
+
+{
+  "longURL": "www.google.com"
+}
+
+### register url ###
+POST http://localhost:8080/api/short_it
+Content-Type: application/json
+
+{
+  "longURL": "www.youtube.com",
+}
+
+### delete url of particular user ###
+DELETE  http://localhost:8080/delete/683c83723bfc2c074c2ec2c8/d61ac103
+
+### get particular url details ###
+GET  http://localhost:8080/url/37d60e27
+
+### update details of particular url by id ###
+PUT http://localhost:8080/update/37d60e27
+Content-Type: application/json
+
+{
+  "longURL": "www.youtube.com"
+}
